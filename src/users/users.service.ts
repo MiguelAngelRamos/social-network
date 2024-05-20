@@ -24,6 +24,12 @@ export class UsersService {
     return users;
   }
 
+  //* necesito crear un método que me permita obtener al usuario por correo
+  async findByEmail(email: string ): Promise<User | null> {
+    const user = await this.userModel.findOne({email}).exec();
+    return user;
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} user`;
   }
