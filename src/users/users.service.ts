@@ -18,8 +18,10 @@ export class UsersService {
     return createUser.save()
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll():Promise<Omit<User, 'password'>[]> {
+    //* Busca todos los usuarios en la base de datos y excluye el campo password de los resultados
+    const users = await this.userModel.find().select('-password').exec();
+    return users;
   }
 
   findOne(id: number) {
