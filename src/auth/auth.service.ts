@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt'; // Nos proporciona la funcionalidad de generar y verificar los tokes "JWT"
 import * as bcrypt from 'bcrypt';
-import { access } from 'fs';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
