@@ -43,11 +43,24 @@ export class UsersService {
     return user ? user.toObject(): null;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  // Un Método para actualizar un usuario por su ID
+  async update(id: string, updateUserDto: UpdateUserDto ): Promise<Omit<User, 'password'> | null> {
+    // Destructurar 
+    const {password, ...userData } = updateUserDto;
+
+    const hashedPassword = password ? await bcrypt.hash(password, 10): undefined;
+    // Actualizar eal usuario en la base de datos
+    const updatedUser = await this.userModel.findByIdAndUpdate(
+      id, {
+        ...userData, 
+        ...(hashedPassword && { password: hashedPassword })}, 
+        { new: true }).select('-password').exec();
+
+      return updatedUser ? updatedUser.toObject() : null;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  // Método para poder eliminar el usuario por ID
+  async remove(id: string): Promise<void> {
+    await this.userModel.findByIdAndDelete(id).exec();
   }
 }
