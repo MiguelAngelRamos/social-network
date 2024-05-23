@@ -38,8 +38,9 @@ export class UsersService {
     return user;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string):Promise<Omit<User, 'password'> | null> {
+    const user =  await this.userModel.findById(id).select('-password').exec();
+    return user ? user.toObject(): null;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

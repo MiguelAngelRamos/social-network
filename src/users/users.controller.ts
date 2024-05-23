@@ -21,10 +21,11 @@ export class UsersController {
   async findAll(): Promise<Omit<User, 'password'>[]> {
     return await this.usersService.findAll();
   }
-
+  
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  findOne(@Param('id') id: string):Promise<Omit<User, 'password'> | null> {
+    return this.usersService.findOne(id);
   }
 
   @Patch(':id')
