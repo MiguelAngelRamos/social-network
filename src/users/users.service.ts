@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
+import { EmailAlreadyExistsException } from '../common/exceptions/email-already-exists';
 
 @Injectable()
 export class UsersService {
@@ -12,6 +13,13 @@ export class UsersService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto) {
+    // Verificar si el email ya existe
+    const existingUser = await this.userModel.findOne({email: createUserDto.email}).exec();
+
+    if(existingUser) {
+     throw new EmailAlreadyExistsException();// lanzar un error si el email ya está en uso
+    }
+
     const { password, ...userData } = createUserDto;
     const hashedPassword = await bcrypt.hash(password, 10);
     const createUser = new this.userModel({...userData, password: hashedPassword});
