@@ -21,6 +21,7 @@ export class UsersController {
   async findAll(): Promise<Omit<User, 'password'>[]> {
     return await this.usersService.findAll();
   }
+  
   //* http://localhost:3000/users/141341341AFAD3DAF - GET
   @UseGuards(JwtAuthGuard)
   @Get(':id')

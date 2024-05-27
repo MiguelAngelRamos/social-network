@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { AuthModule } from './auth/auth.module';
     }),
     MongooseModule.forRoot('mongodb://localhost/db-social-network'),
     UsersModule,
-    AuthModule
+    AuthModule,
+    CommentsModule
   ],
   controllers: [AppController],
   providers: [AppService],

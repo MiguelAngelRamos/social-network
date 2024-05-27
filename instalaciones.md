@@ -248,3 +248,21 @@
     ```
     Explicación: Lenguaje TypeScript, necesario para compilar y ejecutar código TypeScript.
 
+
+25. **Instalaciones para la subir archivos**
+
+    ```bash
+    npm install --save @nestjs/serve-static
+    ```
+    Explicación: Este serve-static nos permite servir archivos estáticos en nuestra app de NestJs
+
+    ```bash
+    npm install --save @nestjs/platform-express
+    ```
+    Explicación: Nos permite utilizar todas las funcionalidades de express en nestjs
+
+    ```bash
+    npm install --save multer 
+    npm install --save-dev @types/multer
+    ```
+    Explicación: Multer es un middleware para Node.js que nos va permitir manejar la subida de archivos.
