@@ -2,7 +2,7 @@ import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/c
 import { CommentsService }  from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { fileStorage } from './interceptors/file-storage.interceptor';
+import { fileStorage } from '../common/interceptors/file-storage.interceptor';
 
 @Controller('comments')
 export class CommentsController {

@@ -18,4 +18,9 @@ export class CommentsService {
     return createdComment.save();
   }
 
+  // El usuario A  debe seguir a otros usuarios (B,C,D) y vamos a crear un metodo que nos permita obtener los comentarios de los usuarios que sigue el usuario (A)
+  findAllByUser(userId: string) {
+    //TODO: Los comentarios de los usuarios que sigue este usuario en particular
+  }
+
 }

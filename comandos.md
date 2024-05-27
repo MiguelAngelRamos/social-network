@@ -9,3 +9,9 @@ nest generate module comments
 ```sh
  nest generate service comments
 ```
+
+## Crear un Controlador
+
+```sh
+ nest generate controller comments
+```
