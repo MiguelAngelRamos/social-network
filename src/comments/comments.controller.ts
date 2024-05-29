@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { CommentsService }  from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -19,4 +19,12 @@ export class CommentsController {
     }
     return this.commentsService.create(createCommentDto);
   }
+
+  // Metodo que va devolver los comentarios de los usuarios que sigue el usuario con el ID proporcionado
+  @Get('user/:userId')
+  findAllByUser(@Param('userId') userId: string) {
+    return this.commentsService.findAllByUser(userId);
+  }
+
+
 }

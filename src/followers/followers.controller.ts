@@ -10,4 +10,6 @@ export class FollowersController {
   create(@Body() createFollowerDto: CreateFollowerDto) {
     return this.followersService.create(createFollowerDto);
   }
+
+  
 }
