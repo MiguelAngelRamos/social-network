@@ -4,12 +4,12 @@ export class CreateCommentDto {
 
   @IsString()
   @IsNotEmpty()
-
   readonly text:string;
+
   @IsString()
   @IsNotEmpty()
-
   readonly authorId: string;
+  
   @IsString()
   imageUrl?: string
 }
